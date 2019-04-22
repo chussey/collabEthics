@@ -1,0 +1,449 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <!-- when using the mode "code", it's important to specify charset utf-8 -->
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Brainstorm about the ethical implications of your project and represent them in a canvas.">
+        <meta name="keywords" content="ethics canvas, ethics, social entrepreneurship, research, innovation, privacy, business development, business model canvas, open source tools">
+        <title>The Ethics Canvas</title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="../icon/favicon.ico" />
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+        <!-- Google font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+        <!-- App style -->
+        <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="css/canvas.css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script src="shareDBTransform.js"></script>
+    <script src="textareaBinding.js"></script>
+    <script src="apply.js"></script>
+    <style>
+
+          textarea#individualsAffected {
+            max-width: 400px;
+            min-width: 100%;
+            min-height: 700px;
+            height: 200px;
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+            border: none;
+            outline:none;
+          }
+          textarea#behaviour {
+            width: 100%;
+            max-height: 300px;
+            min-height: 300px;
+            /* height: 400px; */
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+            border: none;
+            outline:none;
+
+          }
+          textarea#relations {
+            width: 100%;
+            max-height: 300px;
+            min-height: 300px;
+            /* height: 400px; */
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+            border: none;
+            outline:none;
+          }
+          textarea#whatCanWeDo {
+            max-width: 400px;
+            min-width: 100%;
+            min-height: 700px;
+            height: 200px;
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+            border: none;
+            outline:none;
+          }
+          textarea#worldviews {
+            width: 100%;
+            max-height: 300px;
+            min-height: 300px;
+            /* height: 400px; */
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+          border: none;
+            outline:none;
+          }
+          textarea#groupConflicts {
+            width: 100%;
+            max-height: 300px;
+            min-height: 300px;
+            /* height: 400px; */
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+        border: none;
+            outline:none;
+          }
+          textarea#groupsAffected {
+            max-width: 400px;
+            min-width: 100%;
+            min-height: 700px;
+            height: 200px;
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+          border: none;
+            outline:none;
+          }
+
+          textarea#productFailure {
+            width: 100%;
+            max-height: 300px;
+            min-height: 300px;
+            /* height: 400px; */
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+          border: none;
+            outline:none;
+          }
+
+          textarea#problematicUse {
+            width: 100%;
+            max-height: 300px;
+            min-height: 300px;
+            /* height: 400px; */
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+          border: none;
+            outline:none;
+          }
+          textarea#uncategorised {
+            width: 100%;
+            max-height: 300px;
+            min-height: 300px;
+            /* height: 400px; */
+            background-color:rgba(0, 0, 0, 0);
+            color: black;
+          border: none;
+            outline:none;
+          }
+    </style>
+  </head>
+  <body>
+
+    <div class="container-fluid">
+           <form class="canvas-form form" action="mpdf/canvas-download.php" method="post" target="_blank">
+               <!-- Username -->
+               <input type="hidden" name="canvas_id" value="<?php echo($canvas_id); ?>" />
+               <input type="hidden" name="username" value="<?php echo($email); ?>" />
+
+               <!-- Canvas Form Header -->
+               <div class="form-header row text-center">
+                   <div class="col-md-3">
+                       <!-- Logo -->
+                       <h1 class="page_title">
+                           <a class="logo" href="../index.html">
+                               <img src="icons/logo-black-text.svg" alt="Online Ethics Canvas" />
+                           </a>
+                       </h1>
+                   </div>
+                   <div class="col-md-3 ">
+                       <label class="project_title">Canvas Title</label>
+                       <input class="proj_title" name="field_00[]" type="text" value="New canvas" />
+                   </div>
+                   <input class="proj_date" name="field_00[]" type="hidden" />
+                   <!-- Collaborators -->
+                   <div class="col-md-3" id="collaborators-container">
+                       <!-- Bootstrap dropdown component -->
+                       <div class="dropdown" id="collaborators">
+                           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">
+                               <img src="../icon/collaborators.svg" alt="collaborators" /><span>Collaborators (1 active)</span>
+                           </button>
+                       </div>
+                   </div>
+                   <!-- Log in -->
+                   <div class="col-md-3" id="user-profile-container">
+                       <!-- Bootstrap dropdown component -->
+                       <div class="dropdown" id="user-profile">
+                           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                               <img src="../icon/profile.svg"/><span><?php echo $name; ?></span>
+                               <span class="caret"></span>
+                           </button>
+                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               <li><a id="toDashboard" href="php/dashboard.php">Your Canvases</a></li>
+                               <li role="separator" class="divider"></li>
+                               <li><a id="logout" href="#">Log Out</a></li>
+                           </ul>
+                       </div>
+
+                   </div>
+               </div>
+               <div class="canvas-box">
+                 <!-- First Row of Boxes -->
+                <div class="masonry-layout7-5" id="7-5-col-layout">
+                <!-- Individuals Box HTML -->
+                 <div class="masonry-layout__panel" id="panel_01">
+                  <div class="card field_01 masonry-layout__panel-content bg--purple">
+                    <h2 class="field-title">
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="Who use your product or service? Who are affected by it’s use? Are they men/women, of different ages, etc?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>Individuals Affected&nbsp;&nbsp;
+                    </h2>
+                    <textarea id="individualsAffected" name="#textarea"></textarea>
+                  </div>
+                 </div>
+                 <!-- Behaviour Box HTML -->
+                <div class="masonry-layout__panel" id="panel_03">
+                  <div class="card field_03 masonry-layout__panel-content bg--blue">
+                    <h2 class="field-title">
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="How might people’s behaviour change because of your product or service? Their habits, time schedules, choice of activities, etc?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>Behaviour
+                    </h2>
+                    <textarea id="behaviour"></textarea>
+                   </div>
+                </div>
+                <!-- Relations Box HTML -->
+                <div class="masonry-layout__panel" id="panel_04">
+                  <div class="card field_04 masonry-layout__panel-content bg--green">
+                    <h2 class="field-title">
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="How might relations between people and groups change because of your product or service? Between friends, family members, co-workers, etc?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>Relations
+                    </h2>
+                    <textarea id="relations"></textarea>
+                  </div>
+                </div>
+                <!-- What Can We Do Box HTML -->
+                <div class="masonry-layout__panel" id="panel_09">
+                  <div class="card field_09 masonry-layout__panel-content bg--darkblue">
+                      <h2 class="field-title">
+                        <a href="#" data-toggle="tooltip" data-placement="left" title="What are the most important ethical impacts you found? How can you address these by changing your design, organisation, or by proposing broader changes?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>What can we do?
+                      </h2>
+                      <textarea id="whatCanWeDo"></textarea>
+                    </div>
+                  </div>
+                <!-- Worldviews Text Box HTML -->
+                <div class="masonry-layout__panel" id="panel_05">
+                  <div class="card field_05 masonry-layout__panel-content bg--seagreen">
+                    <h2 class="field-title">
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="How might people’s worldviews be affected by your product or service? Their ideas about consumption, religion, work, etc?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>Worldviews
+                    </h2>
+                    <textarea id="worldviews"></textarea>
+                  </div>
+                </div>
+                <!-- Group Conflicts Box HTML -->
+                <div class="masonry-layout__panel" id="panel_06">
+                  <div class="card field_06 masonry-layout__panel-content bg--green1">
+                    <h2 class="field-title">
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="How might group conflict arise or be affected by your product or service? Could it disciminate between people, put them out of work, etc?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>Group Conflicts
+                    </h2>
+                    <textarea id="groupConflicts"></textarea>
+                  </div>
+                </div>
+                <!-- Groups Affected Box HTML-->
+                <div class="masonry-layout__panel" id="panel_02">
+                  <div class="card field_02 masonry-layout__panel-content bg--purple">
+                    <h2 class="field-title">
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="Which groups are involved in the design, production, distribution and use of your product or service? Which groups might be affected by it? Are these work-related organisation, interest groups, etc?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>Groups Affected
+                    </h2>
+                    <textarea id="groupsAffected"></textarea>
+                  </div>
+                </div>
+              </div>
+              <!-- Second Row on Page -->
+              <div class="masonry-layout2" id="2-col-layout">
+                <!-- Product or Service Failure Box HTML -->
+                <div class="masonry-layout__panel" id="panel_07">
+                  <div class="card field_07 masonry-layout__panel-content bg--blue">
+                    <h2 class="field-title">
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="What are potential negative impact of your product or service failing to operate or to be used as intended? What happens with technical errors, security failures, etc?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>Product or Service Failure
+                    </h2>
+                    <textarea id="productFailure"></textarea>
+                  </div>
+                </div>
+                <!-- Problematic Use of Resources Box HTML -->
+                <div class="masonry-layout__panel" id="panel_08">
+                  <div class="card field_08 masonry-layout__panel-content bg--green">
+                    <h2 class="field-title">
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="What are potential negative impacts of the consumption of resources relating to your project? What happens with its use of energy, personal data, etc?"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>Problematic Use of Resources
+                    </h2>
+                    <textarea id="problematicUse"></textarea>
+                  </div>
+                </div>
+              </div>
+              <!-- Final/Third Row on Page -->
+              <div class="masonry-layout" id="1-col-layout">
+                <!-- Uncategorised Ideas Box HTML -->
+                <div class="masonry-layout__panel" id="panel_10">
+                  <div class="card field_10 masonry-layout__panel-content bg--purple">
+                    <h2 class="field-title">
+                      <a href="#" data-toggle="tooltip" data-placement="left" title="Here you can place your ideas that still haven't been categorised"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>Uncategorised Ideas
+                    </h2>
+                    <textarea id="uncategorised"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+    <script>
+      var connection = new window.sharedb.Connection(new WebSocket("ws://localhost:8080"));
+      var parents = "default";
+      var doc = connection.get(parents, 'individualsAffected');
+      doc.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc.type) {
+          var initialText = 'Individuals affected...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc.create(initialText, textType, thisBoolean, callback);
+        }
+        var text1 = document.getElementById("individualsAffected");
+        attachTextarea(text1, doc);
+      });
+
+      var doc2 = connection.get(parents, 'behaviour');
+      doc2.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc2.type) {
+          var initialText = 'Behaviour...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc2.create(initialText, textType, thisBoolean, callback);
+        }
+        var text2 = document.getElementById('behaviour');
+        attachTextarea(text2, doc2);
+      });
+
+      var doc3 = connection.get(parents, 'relations');
+      doc3.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc3.type) {
+          var initialText = 'Relations...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc3.create(initialText, textType, thisBoolean, callback);
+        }
+        var text3 = document.getElementById('relations');
+        attachTextarea(text3, doc3);
+      });
+
+      var doc4 = connection.get(parents, 'whatCanWeDo');
+      doc4.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc4.type) {
+          var initialText = 'What Can We Do?...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc4.create(initialText, textType, thisBoolean, callback);
+        }
+        var text4 = document.getElementById('whatCanWeDo');
+        attachTextarea(text4, doc4);
+      });
+
+      var doc5 = connection.get(parents, 'worldviews');
+      doc5.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc5.type) {
+          var initialText = 'Worldviews...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc5.create(initialText, textType, thisBoolean, callback);
+        }
+        var text5 = document.getElementById('worldviews');
+        attachTextarea(text5, doc5);
+      });
+
+      var doc6 = connection.get(parents, 'groupConflicts');
+      doc6.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc6.type) {
+          var initialText = 'Group Conflicts...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc6.create(initialText, textType, thisBoolean, callback);
+        }
+        var text6 = document.getElementById('groupConflicts');
+        attachTextarea(text6, doc6);
+      });
+
+      var doc7 = connection.get(parents, 'groupsAffected');
+      doc7.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc7.type) {
+          var initialText = 'Groups Affected...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc7.create(initialText, textType, thisBoolean, callback);
+        }
+        var text7 = document.getElementById('groupsAffected');
+        attachTextarea(text7, doc7);
+      });
+
+      var doc8 = connection.get(parents, 'productFailure');
+      doc8.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc8.type) {
+          var initialText = 'Product Failure...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc8.create(initialText, textType, thisBoolean, callback);
+        }
+        var text8 = document.getElementById('productFailure');
+        attachTextarea(text8, doc8);
+      });
+
+      var doc9 = connection.get(parents, 'problematicUse');
+      doc9.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc9.type) {
+          var initialText = 'Problematic use of Resources...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc9.create(initialText, textType, thisBoolean, callback);
+        }
+        var text9 = document.getElementById('problematicUse');
+        attachTextarea(text9, doc9);
+      });
+
+      var doc10 = connection.get(parents, 'uncategorised');
+      doc10.subscribe(function(error) {
+        if (error) {
+          console.log("Failed to subscribe.", error);
+        }
+        if (!doc10.type) {
+          var initialText = 'Uncategorised Ideas...';
+          var textType = ottext.type.name;
+          var thisBoolean = true;
+          var callback = function() {};
+          doc10.create(initialText, textType, thisBoolean, callback);
+        }
+        var text10 = document.getElementById('uncategorised');
+        attachTextarea(text10, doc10);
+      });
+    </script>
+  </body>
+</html>
